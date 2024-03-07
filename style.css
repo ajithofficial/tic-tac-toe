@@ -1,0 +1,114 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --box-size: 300px;
+    --cell-size: 100px;
+}
+
+body {
+    background-color: black;
+}
+
+.box {
+    size: 100vw;
+    height: 100vh;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cell {
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.cell:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.cell:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.cell:nth-child(n + 1) {
+    border-top: none;
+}
+
+.cell:nth-child(n + 7) {
+    border-bottom: none;
+}
+
+.cell.cross::before, .cell.cross::after {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+    width: calc(var(--cell-size) * .50);
+    height: calc(var(--cell-size) * .10);
+}
+
+.cell.cell.cross::before {
+    transform: rotate(45deg);
+}
+
+.cell.cell.cross::after {
+    transform: rotate(-45deg);
+}
+
+.cell.circle::before {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+    width: calc(var(--cell-size) * .50);
+    height: calc(var(--cell-size) * .50);
+    border-radius: 50%;
+}
+.cell.circle::after {
+    content: '';
+    position: absolute;
+    background-color: #000;
+    width: calc(var(--cell-size) * .30);
+    height: calc(var(--cell-size) * .30);
+    border-radius: 50%;
+}
+
+.start-box {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 10%);
+    color: #fff;
+}
+
+.winner-box {
+    display: none;
+    width: var(--box-size);
+    height: var(--box-size);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: #fff;
+    /* padding: 100px; */
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+}
+
+.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hide {
+    display: none;
+}
