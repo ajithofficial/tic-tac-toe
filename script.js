@@ -1,7 +1,8 @@
 const cellElements = document.querySelectorAll('[grid-cell]');
 const winnerText = document.querySelector('[winner-text]');
 const winnerElement = document.getElementById('winner-box');
-const startTextElement = document.getElementById('start-box');
+const startElement = document.getElementById('start-box');
+const startTextElement = document.querySelector('[start-text]');
 const restartElement = document.getElementById('restart');
 
 let circleTurn;
@@ -24,9 +25,11 @@ const handleClick = (e) => {
     if(checkForWin(currentClass)) {
         winnerText.innerText = `${circleTurn ? 'Cross': 'Circle'} Won!`;
         winnerElement.classList.add('show');
+        startElement.classList.add('hide')
     } else if(checkDraw()) {
         winnerText.innerText = `Match Draw!`;
         winnerElement.classList.add('show');
+        startElement.classList.add('hide')
     }
 };
 
@@ -34,7 +37,7 @@ const changeClass = (cell, className) => {
     if(!cell.classList.value.includes(CLASSLIST.circle) && !cell.classList.value.includes(CLASSLIST.cross)) {
         circleTurn = !circleTurn;
         cell.classList.add(className);
-        startTextElement.classList.add('hide')
+        startTextElement.innerText = `${circleTurn ? "Circle's": "Cross's"} Turn!`;
     }
 }
 
@@ -64,7 +67,8 @@ const startGame = () => {
         cell.classList.remove(CLASSLIST.cross);
         cell.addEventListener('click', handleClick, { once: true });
     });
-    startTextElement.classList.remove('hide')
+    startTextElement.innerText = `Let's Play`;
+    startElement.classList.remove('hide')
     restartElement.addEventListener('click', handleReStart);
 }
 startGame();
