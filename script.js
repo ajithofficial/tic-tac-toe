@@ -4,11 +4,14 @@ const winnerElement = document.getElementById('winner-box');
 const startElement = document.getElementById('start-box');
 const startTextElement = document.querySelector('[start-text]');
 const restartElement = document.getElementById('restart');
+const aboutMeElement = document.getElementById('about-me');
 
 let circleTurn;
 const CLASSLIST = {
     circle: 'circle',
-    cross: 'cross'
+    cross: 'cross',
+    show: 'show',
+    hide: 'hide'
 };
 const conditions = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], 
@@ -23,13 +26,13 @@ const handleClick = (e) => {
     changeClass(cell, currentClass);
     // check win
     if(checkForWin(currentClass)) {
-        winnerText.innerText = `${circleTurn ? 'Cross': 'Circle'} Won!`;
-        winnerElement.classList.add('show');
-        startElement.classList.add('hide')
+        winnerText.innerText = `${circleTurn ? 'X': 'O'} Won!`;
+        winnerElement.classList.add(CLASSLIST.show);
+        startElement.classList.add(CLASSLIST.hide)
     } else if(checkDraw()) {
         winnerText.innerText = `Match Draw!`;
-        winnerElement.classList.add('show');
-        startElement.classList.add('hide')
+        winnerElement.classList.add(CLASSLIST.show);
+        startElement.classList.add(CLASSLIST.hide)
     }
 };
 
@@ -37,7 +40,7 @@ const changeClass = (cell, className) => {
     if(!cell.classList.value.includes(CLASSLIST.circle) && !cell.classList.value.includes(CLASSLIST.cross)) {
         circleTurn = !circleTurn;
         cell.classList.add(className);
-        startTextElement.innerText = `${circleTurn ? "Circle's": "Cross's"} Turn!`;
+        startTextElement.innerText = `${circleTurn ? "O's": "X's"} Turn!`;
     }
 }
 
@@ -55,7 +58,7 @@ const checkDraw = () => {
 }
 
 const handleReStart = () => {
-    winnerElement.classList.remove('show');
+    winnerElement.classList.remove(CLASSLIST.show);
     startGame();
 }
 
@@ -68,7 +71,11 @@ const startGame = () => {
         cell.addEventListener('click', handleClick, { once: true });
     });
     startTextElement.innerText = `Let's Play`;
-    startElement.classList.remove('hide')
+    startElement.classList.remove(CLASSLIST.hide)
     restartElement.addEventListener('click', handleReStart);
+    // About me
+    aboutMeElement.addEventListener('click', () => {
+        window.open('https://www.linkedin.com/in/iamajithak/', '_blank');
+    });
 }
 startGame();
