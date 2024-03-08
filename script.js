@@ -26,6 +26,7 @@ const conditions = [
 ];
 
 const welcomeSound = () => {
+    welcome.muted = false;
     welcome.play();
     setTimeout(()=> {
         welcome.pause();
