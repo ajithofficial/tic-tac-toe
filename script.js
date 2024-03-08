@@ -8,7 +8,7 @@ const aboutMeElement = document.getElementById('about-me');
 
 const xSound = new Audio('./assets/audio/x_sound.mp3');
 const oSound = new Audio('./assets/audio/o_sound.mp3');
-const welcome = new Audio('./assets/audio/welcome.mp3');
+const welcomeSound = new Audio('./assets/audio/welcome.mp3');
 const wonSound = new Audio('./assets/audio/won.mp3');
 const drawSound = new Audio('./assets/audio/draw.mp3');
 
@@ -25,16 +25,17 @@ const conditions = [
     [0, 4, 8], [2, 4, 6]
 ];
 
-const welcomeSound = () => {
-    welcome.muted = false;
-    welcome.play();
+const triggerWelcomeSound = () => {
+    welcomeSound.play();
+    welcomeSound.muted = false;
     setTimeout(()=> {
-        welcome.pause();
-        welcome.currentTime = 0;
+        welcomeSound.pause();
+        welcomeSound.currentTime = 0;
+        welcomeSound.remove();
     }, 2000);
 }
 
-window.onload = welcomeSound;
+window.onload = triggerWelcomeSound;
 
 const handleClick = (e) => {
     // place mark
@@ -88,7 +89,7 @@ const checkDraw = () => {
 
 const handleReStart = () => {
     winnerElement.classList.remove(CLASSLIST.show);
-    welcomeSound();
+    triggerWelcomeSound();
     startGame();
 }
 
