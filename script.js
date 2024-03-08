@@ -6,6 +6,12 @@ const startTextElement = document.querySelector('[start-text]');
 const restartElement = document.getElementById('restart');
 const aboutMeElement = document.getElementById('about-me');
 
+const xSound = new Audio('./assets/audio/x_sound.mp3');
+const oSound = new Audio('./assets/audio/o_sound.mp3');
+const welcome = new Audio('./assets/audio/welcome.mp3');
+const wonSound = new Audio('./assets/audio/won.mp3');
+const drawSound = new Audio('./assets/audio/draw.mp3');
+
 let circleTurn;
 const CLASSLIST = {
     circle: 'circle',
@@ -26,21 +32,33 @@ const handleClick = (e) => {
     changeClass(cell, currentClass);
     // check win
     if(checkForWin(currentClass)) {
+        wonSound.play();
         winnerText.innerText = `${circleTurn ? 'X': 'O'} Won!`;
         winnerElement.classList.add(CLASSLIST.show);
         startElement.classList.add(CLASSLIST.hide)
     } else if(checkDraw()) {
+        drawSound.play();
         winnerText.innerText = `Match Draw!`;
         winnerElement.classList.add(CLASSLIST.show);
         startElement.classList.add(CLASSLIST.hide)
     }
 };
 
+const changeSound = (circleTurn) => {
+    if(circleTurn) {
+        oSound.play();
+    } else {
+        xSound.play();
+    }
+}
+
 const changeClass = (cell, className) => {
     if(!cell.classList.value.includes(CLASSLIST.circle) && !cell.classList.value.includes(CLASSLIST.cross)) {
         circleTurn = !circleTurn;
         cell.classList.add(className);
         startTextElement.innerText = `${circleTurn ? "O's": "X's"} Turn!`;
+        // change sound
+        changeSound(circleTurn);
     }
 }
 
@@ -64,6 +82,11 @@ const handleReStart = () => {
 
 
 const startGame = () => {
+    welcome.play();
+    setTimeout(()=> {
+        welcome.pause();
+        welcome.currentTime = 0;
+    }, 2000);
     circleTurn = true;
     cellElements.forEach((cell) => {
         cell.classList.remove(CLASSLIST.circle);
