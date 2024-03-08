@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tic Tac Toe</title>
-    <link rel="stylesheet" href="./style.css"/>
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Madimi+One&family=Raleway:wght@400;700&family=Roboto:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
     <div class="start-box" id="start-box">
-        <h1 start-text>Let's Play</h1>
+      <h1 start-text>Let's Play</h1>
     </div>
     <div class="box" id="box">
-        <div class="cell" grid-cell></div>
-        <div class="cell" grid-cell></div>
-        <div class="cell" grid-cell></div>
-        <div class="cell" grid-cell></div>
-        <div class="cell" grid-cell></div>
-        <div class="cell" grid-cell></div>
-        <div class="cell" grid-cell></div>
-        <div class="cell" grid-cell></div>
-        <div class="cell" grid-cell></div>
+      <div class="cell" grid-cell></div>
+      <div class="cell" grid-cell></div>
+      <div class="cell" grid-cell></div>
+      <div class="cell" grid-cell></div>
+      <div class="cell" grid-cell></div>
+      <div class="cell" grid-cell></div>
+      <div class="cell" grid-cell></div>
+      <div class="cell" grid-cell></div>
+      <div class="cell" grid-cell></div>
     </div>
     <div class="winner-box" id="winner-box">
-        <h1 winner-text></h1>
-        <button class="restart" id="restart">Restart Game</button>
+      <h1 winner-text></h1>
+      <button class="restart" id="restart">Restart Game</button>
+    </div>
+    <div class="footer">
+      <div id="about-me">👋 About Me</div>
     </div>
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>

@@ -1,6 +1,7 @@
 *, *::after, *::before {
     box-sizing: border-box;
 }
+  
 
 :root {
     --box-size: 300px;
@@ -9,6 +10,9 @@
 
 body {
     background-color: black;
+    font-family: "Madimi One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .box {
@@ -97,7 +101,6 @@ body {
     top: 50%;
     left: 50%;
     background-color: #fff;
-    /* padding: 100px; */
     border-radius: 10px;
     transform: translate(-50%, -50%);
 }
@@ -111,4 +114,16 @@ body {
 
 .hide {
     display: none;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #fff;
+}
+
+#about-me {
+    cursor: pointer;
 }
