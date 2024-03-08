@@ -25,6 +25,16 @@ const conditions = [
     [0, 4, 8], [2, 4, 6]
 ];
 
+const welcomeSound = () => {
+    welcome.play();
+    setTimeout(()=> {
+        welcome.pause();
+        welcome.currentTime = 0;
+    }, 2000);
+}
+
+window.onload = welcomeSound;
+
 const handleClick = (e) => {
     // place mark
     const cell = e.target;
@@ -77,16 +87,12 @@ const checkDraw = () => {
 
 const handleReStart = () => {
     winnerElement.classList.remove(CLASSLIST.show);
+    welcomeSound();
     startGame();
 }
 
 
 const startGame = () => {
-    welcome.play();
-    setTimeout(()=> {
-        welcome.pause();
-        welcome.currentTime = 0;
-    }, 2000);
     circleTurn = true;
     cellElements.forEach((cell) => {
         cell.classList.remove(CLASSLIST.circle);
