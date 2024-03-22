@@ -32,6 +32,10 @@ const triggerWelcomeSound = () => {
         welcomeSound.pause();
         welcomeSound.currentTime = 0;
         welcomeSound.remove();
+        // voice assistant
+        const utterThis = new SpeechSynthesisUtterance(`Welcome to the Game!`);
+        const synth = window.speechSynthesis;
+        synth.speak(utterThis);
     }, 2000);
 }
 
@@ -44,10 +48,15 @@ const handleClick = (e) => {
     changeClass(cell, currentClass);
     // check win
     if(checkForWin(currentClass)) {
-        wonSound.play();
-        winnerText.innerText = `${circleTurn ? 'X': 'O'} Won!`;
-        winnerElement.classList.add(CLASSLIST.show);
-        startElement.classList.add(CLASSLIST.hide)
+        const utterThis = new SpeechSynthesisUtterance(`Player ${circleTurn ? 'X': 'O'} Won!`);
+        const synth = window.speechSynthesis;
+        synth.speak(utterThis);
+        setTimeout(() => {
+            wonSound.play();
+            winnerText.innerText = `${circleTurn ? 'X': 'O'} Won!`;
+            winnerElement.classList.add(CLASSLIST.show);
+            startElement.classList.add(CLASSLIST.hide)
+        }, 1000);
     } else if(checkDraw()) {
         drawSound.play();
         winnerText.innerText = `Match Draw!`;
