@@ -26,16 +26,16 @@ const conditions = [
 ];
 
 const triggerWelcomeSound = () => {
-    // voice assistant
-    const utterThis = new SpeechSynthesisUtterance(`Welcome to the Game!`);
-    const synth = window.speechSynthesis;
-    synth.speak(utterThis);
     welcomeSound.play();
     welcomeSound.muted = false;
     setTimeout(()=> {
         welcomeSound.pause();
         welcomeSound.currentTime = 0;
         welcomeSound.remove();
+        // voice assistant
+        const utterThis = new SpeechSynthesisUtterance(`Let's start the new game!`);
+        const synth = window.speechSynthesis;
+        synth.speak(utterThis);
     }, 2000);
 }
 
@@ -60,6 +60,11 @@ const handleClick = (e) => {
     } else if(checkDraw()) {
         drawSound.play();
         winnerText.innerText = `Match Draw!`;
+        setTimeout(() => {
+            const utterThis = new SpeechSynthesisUtterance(`Match Draw`);
+            const synth = window.speechSynthesis;
+            synth.speak(utterThis);
+        }, 1000);
         winnerElement.classList.add(CLASSLIST.show);
         startElement.classList.add(CLASSLIST.hide)
     }
